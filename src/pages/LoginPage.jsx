@@ -17,13 +17,9 @@ const LoginPage = () => {
 
     const handleLogin = (e) => {
         e.preventDefault();
-        const userValid = usuarioData.data;
+        const userValid = usuarioData.data.find(u => u.usuario === form.usuario);
 
-        if (
-            form.usuario === userValid.usuario && 
-            form.password === userValid.password && 
-            userValid.estado
-        ) {
+        if (userValid && form.password === userValid.password && userValid.estado) {
             localStorage.setItem("sesion", JSON.stringify(userValid));
             setAutenticado(true);
         } else {
